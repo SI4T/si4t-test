@@ -1,3 +1,5 @@
+package org.si4t.test.deployer;
+
 import com.tridion.configuration.Configuration;
 import com.tridion.configuration.ConfigurationException;
 import com.tridion.configuration.XMLConfigurationReader;
