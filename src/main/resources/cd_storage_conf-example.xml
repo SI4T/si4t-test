@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration Version="7.1"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="schemas/cd_storage_conf.xsd">
+    <Global>
+        <ObjectCache Enabled="true">
+            <Policy Type="LRU" Class="com.tridion.cache.LRUPolicy">
+                <Param Name="MemSize" Value="16mb"/>
+            </Policy>
+            <Features>
+                <Feature Type="DependencyTracker" Class="com.tridion.cache.DependencyTracker"/>
+            </Features>
+
+            <RemoteSynchronization Queuesize="512">
+                <!-- DD4T TextJMSCacheChannelConnector -->
+                <Connector Class="org.dd4t.cache.TextJMSCacheChannelConnector" Topic="Tridion" Strategy="AsyncJMS11">
+                    <JndiContext>
+                        <Property Name="java.naming.factory.initial" Value="org.apache.activemq.jndi.ActiveMQInitialContextFactory"/>
+                        <Property Name="java.naming.provider.url" Value="tcp://localhost:61616?soTimeout=5000"/>
+                        <Property Name="topic.Tridion" Value="TridionTopic"/>
+                        <property Name="objectMessageSerializationDefered" Value="true"/>
+                    </JndiContext>
+                </Connector>
+            </RemoteSynchronization>
+        </ObjectCache>
+
+        <Storages>
+            <!--
+			<Storage Type="persistence" Id="defaultdb" dialect="MSSQL" Class="com.tridion.storage.persistence.JPADAOFactory">
+				<Pool Type="jdbc" Size="10" MonitorInterval="60" IdleTimeout="120" CheckoutTimeout="120" />
+				<DataSource Class="com.microsoft.sqlserver.jdbc.SQLServerDataSource">
+				  <Property Name="serverName" Value="localhost" />
+				  <Property Name="portNumber" Value="1433" />
+				  <Property Name="databaseName" Value="broker_db_name" />
+				  <Property Name="user" Value="username" />
+				  <Property Name="password" Value="password" />
+				</DataSource>
+			</Storage>
+            -->
+            <Storage Type="filesystem" Class="com.tridion.storage.filesystem.FSDAOFactory" Id="defaultFile" defaultFilesystem="false">
+                <Root Path="target\deployer-testbench\cd_data_store" />
+            </Storage>
+            <Storage Type="filesystem" Class="com.tridion.storage.filesystem.FSDAOFactory" Id="defaultDataFile" defaultFilesystem="true" defaultStorage="true">
+                <Root Path="target\deployer-testbench\cd_data_store\data" />
+            </Storage>
+        </Storages>
+    </Global>
+    <!--
+    <ItemTypes defaultStorageId="defaultdb" cached="true">
+        <Item typeMapping="Binary" storageId="defaultdb" cached="false"/>
+    </ItemTypes>
+    -->
+    <ItemTypes defaultStorageId="defaultDataFile" cached="true">
+        <Item typeMapping="Page" storageId="defaultFile" cached="true" />
+        <Item typeMapping="Binary" storageId="defaultDataFile" cached="false"/>
+    </ItemTypes>
+    <!--<License Location="C:\Program Files (x86)\Tridion\config\cd_licenses.xml"/>-->
+</Configuration>
