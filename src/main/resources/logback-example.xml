@@ -3,7 +3,7 @@
     <!-- Properties -->
     <property name="log.pattern" value="%date %-5level %logger{0} - %message%n"/>
     <property name="log.history" value="7"/>
-    <property name="log.folder" value="Z:/Source Code/dd4t/dd4t-cache/target/deployer-test/logs"/>
+    <property name="log.folder" value="Z:/Source Code/dd4t/dd4t-cache/target/deployer-testbench/logs"/>
     <property name="log.level" value="WARN"/>
     <property name="log.encoding" value="UTF-8"/>
 

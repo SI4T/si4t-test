@@ -32,7 +32,7 @@
 
     <!-- Configure the Queue locations the deployer checks for incoming deployment packages -->
     <Queue>
-        <Location Path="target\deployer-test\queue" WindowSize="20" Workers="10" Cleanup="false" Interval="500ms"/>
+        <Location Path="target\deployer-testbench\queue" WindowSize="20" Workers="10" Cleanup="false" Interval="500ms"/>
     </Queue>
 
     <!--

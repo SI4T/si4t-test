@@ -38,10 +38,10 @@
 			</Storage>
             -->
             <Storage Type="filesystem" Class="com.tridion.storage.filesystem.FSDAOFactory" Id="defaultFile" defaultFilesystem="false">
-                <Root Path="target\deployer-test\cd_data_store" />
+                <Root Path="target\deployer-testbench\cd_data_store" />
             </Storage>
             <Storage Type="filesystem" Class="com.tridion.storage.filesystem.FSDAOFactory" Id="defaultDataFile" defaultFilesystem="true" defaultStorage="true">
-                <Root Path="target\deployer-test\cd_data_store\data" />
+                <Root Path="target\deployer-testbench\cd_data_store\data" />
             </Storage>
         </Storages>
     </Global>
